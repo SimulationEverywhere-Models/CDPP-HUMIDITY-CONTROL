@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDPlusPlus_Builder_Version_1.0.0>
+  <top>
+    <components> TC&#xd;</components>
+    <components> po@ProcessorOne&#xd;</components>
+    <in> season time people tSensor2 hSensor2&#xd;</in>
+    <out> humidD condHeat&#xd;</out>
+    <Link> season seasonIn@po&#xd;</Link>
+    <Link> time timeIn@po&#xd;</Link>
+    <Link> people peopleIn@po&#xd;</Link>
+    <Link> tSensor2 tSensor1@TC&#xd;</Link>
+    <Link> hSensor2 hSensor1@TC&#xd;</Link>
+    <Link> tempOut@po tempIn1@TC&#xd;</Link>
+    <Link> humidOut@po humidIn1@TC&#xd;</Link>
+    <Link> TPort1@TC condHeat&#xd;</Link>
+    <Link> TPort2@TC humidD&#xd;</Link>
+  </top>
+  <po>
+    <preparation> 00:00:03:000&#xd;</preparation>
+  </po>
+  <TC>
+    <components> SC&#xd;</components>
+    <components> memory@Memory&#xd;</components>
+    <in> tSensor1 hSensor1 tempIn1 humidIn1&#xd;</in>
+    <out> TPort1 TPort2&#xd;</out>
+    <Link> tSensor1 in1@SC&#xd;</Link>
+    <Link> tempIn1 tempIn@memory&#xd;</Link>
+    <Link> humidIn1 humidIn@memory&#xd;</Link>
+    <Link> tempOut@memory in2@SC&#xd;</Link>
+    <Link> humidOut@memory in3@SC&#xd;</Link>
+    <Link> hSensor1 in4@SC&#xd;</Link>
+    <Link> SPort1@SC TPort1&#xd;</Link>
+    <Link> Sport2@SC TPort2&#xd;</Link>
+  </TC>
+  <memory>
+    <preparation> 00:00:03:000&#xd;</preparation>
+  </memory>
+  <SC>
+    <components> ct@CompareTemp&#xd;</components>
+    <components> pt@ProcessorTwo&#xd;</components>
+    <components> ch@CompareHumidity&#xd;</components>
+    <in> in1 in2 in3 in4&#xd;</in>
+    <out> SPort1 SPort2&#xd;</out>
+    <Link> in1 tempSensor@ct&#xd;</Link>
+    <Link> in2 tempSetting@ct&#xd;</Link>
+    <Link> in3 humiditySetting@ch&#xd;</Link>
+    <Link> in4 humiditySensor@ch&#xd;</Link>
+    <Link> port1@pt SPort1&#xd;</Link>
+    <Link> port2@pt SPort2&#xd;</Link>
+    <Link> tempDiff@ct tempDiff1@pt&#xd;</Link>
+    <Link> humidDiff@ch humidDiff1@pt&#xd;</Link>
+  </SC>
+  <ct>
+    <preparation> 00:00:03:000 &#xd;</preparation>
+  </ct>
+  <ch>
+    <preparation> 00:00:03:000 &#xd;</preparation>
+  </ch>
+  <pt>
+    <preparation> 00:00:03:000 &#xd;</preparation>
+  </pt>
+</CDPlusPlus_Builder_Version_1.0.0>
